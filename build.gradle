@@ -1,0 +1,14 @@
+apply plugin: 'groovy'
+
+build = "build"
+
+buildscript {
+    dependencies {
+        classpath fileTree(dir: 'jcoffeescript', include: '*.jar')
+        classpath files('jcoffeescript/target/dist/jcoffeescript-1.1.jar')
+    }
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.0-milestone-3'
+}

@@ -1,0 +1,3 @@
+[submodule "jcoffeescript"]
+	path = jcoffeescript
+	url = https://github.com/yeungda/jcoffeescript.git
