@@ -32,4 +32,4 @@ You can then use the CoffeeCompile task in your `build.gradle` file like this:
 
 --------------------------------------------------------------------------------
 
-[CoffeeScript]: (http://jashkenas.github.com/coffee-script/)
+[CoffeeScript]: http://jashkenas.github.com/coffee-script/
