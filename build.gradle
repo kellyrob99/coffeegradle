@@ -6,6 +6,8 @@ group = "com.huyderman"
 version = "1.0-ALPHA"
 status  = "snapshot"
 
+description = "Gradle Tasks to compile CoffeeScripts"
+
 dependsOn(":jcoffeescript")
 
 dependencies {
@@ -21,6 +23,8 @@ allprojects {
         mavenRepo name: 'Codehaus', urls: 'http://repository.codehaus.org'
     }
 }
+
+metaInf = [files("LICENSE", "NOTICE")]
 
 project(":jcoffeescript")  {
 
