@@ -4,19 +4,21 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 group = "com.huyderman"
-version = "1.0-ALPHA"
-status  = "snapshot"
+version = "1.0-BETA"
+status = "snapshot"
 
 description = "Gradle Tasks to compile CoffeeScripts"
-    repositories {
-        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
-            name = 'GitHub'
-            addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
-        }
+
+repositories {
+    add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+        name = 'GitHub'
+        addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
     }
+}
+
 dependencies {
     compile gradleApi()
-	compile 'yeungda:jcoffeescript:1.1'
+    compile 'yeungda:jcoffeescript:1.1'
     groovy localGroovy()
 }
 
