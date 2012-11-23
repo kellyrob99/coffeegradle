@@ -1,5 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'maven'
 
 group = "com.huyderman"
@@ -7,55 +8,16 @@ version = "1.0-ALPHA"
 status  = "snapshot"
 
 description = "Gradle Tasks to compile CoffeeScripts"
-
-dependsOn(":jcoffeescript")
-
+    repositories {
+        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+            name = 'GitHub'
+            addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+        }
+    }
 dependencies {
     compile gradleApi()
-    compile project(":jcoffeescript")
+	compile 'yeungda:jcoffeescript:1.1'
     groovy localGroovy()
 }
 
-allprojects {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        mavenRepo name: 'Codehaus', urls: 'http://repository.codehaus.org'
-    }
-}
-
 metaInf = [files("LICENSE", "NOTICE")]
-
-project(":jcoffeescript")  {
-
-    apply plugin: 'java'
-    apply plugin: 'maven'
-
-    version = "1.1"
-    group = "org.jcoffeescript"
-    
-    dependencies {
-        compile "org.mozilla:rhino:1.7R3"
-        runtime "org.jruby:jruby-complete:1.4.0"
-        testCompile "org.hamcrest:hamcrest-integration:1.3.RC2"
-        testCompile "junit:junit-dep:4.8.2"
-    }
-
-    sourceSets {
-        test {
-            java {
-                srcDir 'src/unit-tests/java'
-            }
-        }
-    }
-
-    metaInf = [files("LICENSE", "NOTICE")]
-    
-    jar {
-        manifest {
-            attributes("Main-Class":"org.jcoffeescript.Main", "Class-Path": configurations.runtime.collect { it.getName() }.join(' '))
-            
-        }
-        
-    }
-}
